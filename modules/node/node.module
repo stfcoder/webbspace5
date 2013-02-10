@@ -1006,7 +1006,7 @@ function node_search($op = 'search', $keys = NULL) {
 /**
  * Implementation of hook_user().
  */
-function node_user($op, &$edit, &$user) {
+function node_user($op, $edit, $user) {
   if ($op == 'delete') {
     db_query('UPDATE {node} SET uid = 0 WHERE uid = %d', $user->uid);
     db_query('UPDATE {node_revisions} SET uid = 0 WHERE uid = %d', $user->uid);

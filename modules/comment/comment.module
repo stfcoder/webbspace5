@@ -450,7 +450,7 @@ function comment_nodeapi(&$node, $op, $arg = 0) {
  *
  * Provides signature customization for the user's comments.
  */
-function comment_user($type, $edit, &$user, $category = NULL) {
+function comment_user($type, $edit, $user, $category = NULL) {
   if ($type == 'form' && $category == 'account') {
     // when user tries to edit his own data
     $form['comment_settings'] = array(
