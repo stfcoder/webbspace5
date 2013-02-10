@@ -655,6 +655,22 @@ function webb_form_alter($form_id, &$form) {
   elseif ('og_confirm_unsubscribe' == $form_id) {
     _webb_form_alter_og_confirm_unsubscribe($form_id, $form);
   }
+  elseif ('node_delete_confirm' == $form_id || 'user_confirm_delete' == $form_id) {
+    _webb_form_alter_node_delete_confirm($form_id, $form);
+  }
+
+  $form['delete']['#disabled'] = true;
+}
+
+function _webb_form_alter_node_delete_confirm($form_id, &$form) {
+
+  $form = array(
+    'access_denied' => array(
+      '#type' => 'markup',
+      '#value' => t('The delete function has been disabled'),
+    ),
+  );
+
 }
 
 function _webb_form_alter_og_confirm_unsubscribe($form_id, &$form) {
