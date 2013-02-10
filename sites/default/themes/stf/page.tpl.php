@@ -37,7 +37,7 @@
     <div class="tabs"><?php print $tabs ?></div>
     <div id="main" class="sb">
       <?php if (!empty($mission)) : ?>
-        <div class="mission-statement"><? print $mission; ?></div>
+        <div class="mission-statement"><?php print $mission; ?></div>
       <?php endif; ?>
       <h1 class="title"><?php print $title ?></h1>
       <?php print $help ?>

@@ -6,7 +6,7 @@ function cck_taxonomy_field_info() {
   );
 }
 
-function cck_taxonomy_field_settings($op, &$field) {
+function cck_taxonomy_field_settings($op, $field) {
   switch ($op) {
     case 'database columns':
       $columns = array(

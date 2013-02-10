@@ -1041,7 +1041,7 @@ function content_format($field, $item, $formatter = 'default', $node = NULL) {
  * @return
  *   An HTML string containing the fully themed field.
  */
-function theme_field(&$node, &$field, &$items, $teaser, $page) {
+function theme_field($node, $field, $items, $teaser, $page) {
   $label_display = isset($field['display_settings']['label']['format']) ? $field['display_settings']['label']['format'] : 'above';
   $label = check_plain(t($field['widget']['label']));
   $items_output = '';
