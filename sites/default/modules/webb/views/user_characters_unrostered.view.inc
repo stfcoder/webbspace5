@@ -1,12 +1,12 @@
 <?php
 
   $view = new stdClass();
-  $view->name = 'user_characters';
-  $view->description = 'A list of characters owned by a specified user';
+  $view->name = 'user_characters_unrostered';
+  $view->description = 'A list of characters owned by a specified user which are not rostered';
   $view->access = array ( );
   $view->view_args_php = '';
   $view->page = TRUE;
-  $view->page_title = 'Characters';
+  $view->page_title = 'Unrostered Characters';
   $view->page_header = '';
   $view->page_header_format = '1';
   $view->page_footer = '';
@@ -14,7 +14,7 @@
   $view->page_empty = '';
   $view->page_empty_format = '1';
   $view->page_type = 'table';
-  $view->url = 'views/user_characters';
+  $view->url = 'views/user_characters_unrostered';
   $view->use_pager = FALSE;
   $view->nodes_per_page = '0';
   $view->sort = array(
@@ -87,7 +87,7 @@
       'operator' => 'AND',
       'options' => '',
       'value' => array (
-  0 => 'Rostered', ),
+  0 => 'Unrostered', ),
     ),
   );
   $view->exposed_filter = array(

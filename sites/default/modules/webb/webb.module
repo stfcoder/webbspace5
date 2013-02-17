@@ -1393,7 +1393,7 @@ function webb_views_default_views() {
  * Implementation of hook_profile_alter().
  */
 function webb_profile_alter(&$account, &$fields) {
-
+  global $user;
   // We don't want to show the subscription list or the user's
   // original application.
   //unset($fields['Groups']);
@@ -1407,6 +1407,18 @@ function webb_profile_alter(&$account, &$fields) {
       'class' => 'user_characters',
     )
   );
+
+  // Add a list of this user's unrostered characters - only for the user to see
+  if($user->uid == $account->uid) {
+    $fields[t('Unrostered Characters')] = array(
+      array(
+        'value' => component_get_view('user_characters_unrostered', $account->uid),
+        'title' => '',
+        'class' => 'user_characters_unrostered',
+      )
+    );
+  }
+
 }
 
 /**
