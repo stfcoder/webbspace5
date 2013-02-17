@@ -491,6 +491,16 @@ function _webb_link_note($node, $teaser) {
           'title' => t("Post a reply to this note"),
          ),
       );
+      
+      // Add a "post new note" link
+      $links['post_new_note'] = array(
+        'title' => t("Post new note"),
+        'href' => "node/add/note",
+        'query' => "gids[]={$group_nid}",
+        'attributes' => array(
+          'title' => t("Post a new note on this board"),
+        ),
+      );
     }
 
     // Add a link to the next note chronologically on this board
@@ -546,14 +556,14 @@ function _webb_link_note($node, $teaser) {
         db_query_range("SELECT n.nid
           FROM {node} n
             INNER JOIN {og_ancestry} oa ON n.nid=oa.nid
-            LEFT OUTER JOIN {history} h ON h.uid=2 AND h.nid=n.nid
+            LEFT OUTER JOIN {history} h ON h.uid=%d AND h.nid=n.nid
           WHERE n.type='%s'
             AND oa.group_nid=%d
             AND n.created > %d
             AND n.status = 1
             AND h.nid IS NULL
           ORDER By created",
-          array($node->type, $group_nid, $node->created), 0, 1)
+          array($user->uid, $node->type, $group_nid, $node->created), 0, 1)
       );
       if ($next_unread) {
         $links['next_unread'] = array(
