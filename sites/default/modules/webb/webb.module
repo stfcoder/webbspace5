@@ -764,8 +764,46 @@ function _webb_form_alter_note_node_form($form_id, &$form) {
       $parent = node_load($parent_nid);
       $body['#default_value'] = webb_quote_note($parent);
     }
+    //Get the GID direct from the parent note
+    $gid = $parent->og_groups[0];
+  }
+  else {
+    //New note, so the group will not be set yet
+    $gid = (int)$_GET['gids'][0];
   }
 
+  // Load the group, and save the GID as an array for later
+  $group = node_load($gid);
+  $gid = array($gid => "$gid");
+
+  //If it's a board, we'll do this.
+  if($group->type == "board") {
+    $form['og_nodeapi'] = array(
+      'visible' => array(
+        'og_groups_visible' => array(
+          '#type' => "item",
+          '#title' => "Audience",
+          '#value' => $group->title,
+        )
+      ),
+      'invisible' => array(
+        'og_groups_hidden' => array(
+          '#type' => "hidden",
+          '#value' => serialize($gid),
+        ),
+        'og_groups' => array(
+          '#type' => "value",
+          '#value' => $gid,
+        )
+      )
+    );
+  }
+  else {
+    //Otherwise something fooey has gone on here - therefore 404 it.
+    drupal_not_found();
+    drupal_exit();
+  }
+  
   // Hide and pre-fill the title field, since we don't want to use it
   // We'll fill in a "real" title in hook_nodeapi.
   $form['title']['#type'] = 'value';
