@@ -35,3 +35,17 @@ function webbtopic_update_5001() {
 
   return $ret;
 }
+
+/**
+ * Add table to cache topics
+ */
+function webbtopic_update_5002() {
+  db_query("CREATE TABLE IF NOT EXISTS {webbtopic_popular_topics} (
+    group_nid int(11) NOT NULL,
+    topic varchar(255) NOT NULL,
+    post_count int(11) NOT NULL DEFAULT '0',
+    last_used int(11) NOT NULL DEFAULT '0',
+    PRIMARY KEY (group_nid, topic),
+    KEY group_nid (group_nid)
+  )/*!40100 DEFAULT CHARACTER SET utf8 */");   
+}

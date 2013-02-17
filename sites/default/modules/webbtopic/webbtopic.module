@@ -43,17 +43,12 @@ function webbtopic_autocomplete($gid, $string) {
 
   $matches = array();
   if ($string) {
-    $result = db_query_range("SELECT DISTINCT wt.topic
-      FROM {webbtopic_topic} wt
-        INNER JOIN {node} n ON wt.nid=n.nid
-  	  WHERE wt.nid IN (SELECT nid FROM {og_ancestry} WHERE group_nid=%d)
-  	    AND %d-n.changed < %d
-  	    AND topic LIKE ('%s%%')
-  	  ORDER BY topic", array(
-        $gid,
-        time(),
-        WEBBTOPIC_AGE_AUTOCOMPLETE,
-        $string,
+    $result = db_query_range("SELECT topic
+      FROM {webbtopic_popular_topics} wt
+      WHERE group_nid = %d
+        AND topic LIKE ('%s%%')
+        ORDER BY topic", array(
+        $gid, $string,
       ), 0, WEBBTOPIC_NUM_AUTOCOMPLETE);
 
     while ($data = db_fetch_object($result)) {
@@ -118,20 +113,12 @@ function _webbtopic_form_alter_withtopic($form_id, &$form, $gid) {
 
 function _webbtopic_form_alter_withtopic_get_suggestions($group) {
   $topics = array();
-
-  // This is almost the same as the autocomplete logic, except that
-  // we order by the last use and have a different set of limits.
-  // We also don't restrict on the name pattern at all.
-  $result = db_query_range("SELECT DISTINCT wt.topic
-    FROM {webbtopic_topic} wt
-      INNER JOIN {node} n ON wt.nid=n.nid
-    WHERE wt.nid IN (SELECT nid FROM {og_ancestry} WHERE group_nid=%d)
-      AND %d-n.changed < %d
-    ORDER BY n.changed", array(
+  // Used the cached table that has already been made by cron - much improved speed
+  $result = db_query_range("SELECT topic 
+    FROM {webbtopic_popular_topics} wt 
+    WHERE group_nid = %d 
+    ORDER BY post_count DESC", array(
       $group->nid,
-      time(),
-      WEBBTOPIC_AGE_SUGGESTIONS,
-      $string,
     ), 0, WEBBTOPIC_NUM_SUGGESTIONS);
 
   while ($record = db_fetch_object($result)) {
