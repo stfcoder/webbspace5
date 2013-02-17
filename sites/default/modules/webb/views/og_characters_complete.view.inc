@@ -82,7 +82,8 @@
       'tablename' => 'node',
       'field' => 'edit',
       'label' => 'Edit',
-      'handler' => 'views_handler_node_edit_destination',
+      //'handler' => 'views_handler_node_edit_destination',
+      'handler' => 'webb_view_node_edit_destination',
     ),
   );
   $view->filter = array (

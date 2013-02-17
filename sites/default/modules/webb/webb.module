@@ -1551,3 +1551,21 @@ function webb_character_archive_form_submit($form_id, $form_values) {
 
   return "node/".$form_values['target'];
 }
+
+
+/**
+ * Handler for the 'edit' link on admin menus
+ * Display a link to edit a node with a destination return
+ * Assumption is admin is already authorised on page load
+ */
+function webb_view_node_edit_destination($fieldinfo, $fielddata, $value, $data) {
+  // try to build a fake node object
+  $data->type = $data->node_type;
+  $data->uid = $data->node_uid;
+  $data->status = 1;
+  //if (node_access('update', $data)) {
+    $link_text = $fielddata['options'] ? $fielddata['options'] : t('Edit');
+    return l($link_text, "node/$data->nid/edit", NULL, drupal_get_destination());
+  //}
+}
+
