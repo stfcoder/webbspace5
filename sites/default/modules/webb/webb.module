@@ -18,7 +18,6 @@ function webb_perm() {
     $perms[] = 'edit '. $type .' content';
     $perms[] = 'edit own '. $type .' content';
   }
-
   return $perms;
 }
 
@@ -352,7 +351,7 @@ function webb_menu($may_cache) {
           'title' => t('Archive'),
           'callback' => 'drupal_get_form',
           'callback arguments' => array('webb_character_archive_form', $node),
-          'access' => _webb_is_og_admin($node->nid),
+          'access' => (user_access('edit own character content') || _webb_is_og_admin($node->og_groups)),
           'type' => MENU_CALLBACK,
         );
       }
