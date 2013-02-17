@@ -464,7 +464,7 @@ function user_search($op = 'search', $keys = NULL) {
 /**
  * Implementation of hook_user().
  */
-function user_user($type, $edit, $user, $category = NULL) {
+function user_user($type, &$edit, $user, $category = NULL) {
   if ($type == 'view') {
     $items['history'] = array('title' => t('Member for'),
       'value' => format_interval(time() - $user->created),
