@@ -3,7 +3,7 @@
 define('WEBBTOPIC_NUM_SUGGESTIONS', 10);
 define('WEBBTOPIC_AGE_SUGGESTIONS', 2592000);  // 30 days, in seconds
 define('WEBBTOPIC_NUM_AUTOCOMPLETE', 20);
-define('WEBBTOPIC_AGE_AUTOCOMPLETE', 5184000); // 60 days, in seconds
+define('WEBBTOPIC_AGE_AUTOCOMPLETE', 7776000); // 90 days, in seconds
 
 /**
  * Implementation of hook_menu().
@@ -336,4 +336,32 @@ function webbtopic_views_handler_field_topic($fieldinfo, $fielddata, $value, &$d
 
 function webbtopic_views_handler_topic_default() {
   // I'm not entirely sure what is supposed to go here... :-)
+}
+
+
+function webbtopic_cron() {
+  // Get all the topics used in the last 90 days
+  db_query('REPLACE INTO {webbtopic_popular_topics} (group_nid, topic, post_count, last_used)
+    SELECT DISTINCT g.group_nid, wt.topic, 0, max(n.changed)
+    FROM {webbtopic_topic} wt
+    INNER JOIN {node} n ON wt.nid = n.nid
+    INNER JOIN {og_ancestry} g ON n.nid = g.nid
+    WHERE %d-n.changed < %d
+    GROUP BY group_nid, wt.topic',
+    array(time(), WEBBTOPIC_AGE_AUTOCOMPLETE));
+
+  // Get all the topics used in the last 30 days, with a count
+  db_query('REPLACE INTO {webbtopic_popular_topics} (group_nid, topic, post_count, last_used) 
+    SELECT DISTINCT g.group_nid, wt.topic, count(wt.topic), max(n.changed) 
+    FROM {webbtopic_topic} wt 
+    INNER JOIN {node} n ON wt.nid = n.nid 
+    INNER JOIN {og_ancestry} g ON n.nid = g.nid 
+    WHERE %d-n.changed < %d 
+    GROUP BY group_nid, wt.topic', 
+    array(time(), WEBBTOPIC_AGE_SUGGESTIONS));
+
+  // For those not used in 90 days, remove them
+  db_query('DELETE FROM {webbtopic_popular_topics} 
+    WHERE %d-last_used > %d',
+    array(time(), WEBBTOPIC_AGE_AUTOCOMPLETE));
 }
