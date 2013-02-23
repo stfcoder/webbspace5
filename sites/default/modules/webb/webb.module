@@ -439,14 +439,16 @@ function _webb_link_note($node, $teaser) {
 
     // Add a link to the previous note chronologically on this board
     $prev_by_time = db_result(
-      db_query_range("SELECT n.nid
-        FROM {node} n INNER JOIN {og_ancestry} oa ON n.nid=oa.nid
+      db_query_range("SELECT n.nid FROM (SELECT n.nid
+        FROM {node} n 
         WHERE n.type='%s'
-          AND oa.group_nid=%d
           AND n.created < %d
+          AND n.created > %d - 2592000
           AND n.status = 1
-        ORDER By created DESC",
-        array($node->type, $group_nid, $node->created), 0, 1)
+        ORDER By n.created DESC) n
+        INNER JOIN {og_ancestry} oa ON n.nid=oa.nid
+        WHERE oa.group_nid = %d",
+        array($node->type, $node->created, $node->created, $group_nid), 0, 1)
     );
     if ($prev_by_time) {
       $links['prev_by_time'] = array(
@@ -504,14 +506,16 @@ function _webb_link_note($node, $teaser) {
 
     // Add a link to the next note chronologically on this board
     $next_by_time = db_result(
-      db_query_range("SELECT n.nid
-        FROM {node} n INNER JOIN {og_ancestry} oa ON n.nid=oa.nid
+        db_query_range("SELECT n.nid FROM (SELECT n.nid
+        FROM {node} n
         WHERE n.type='%s'
-          AND oa.group_nid=%d
           AND n.created > %d
+          AND n.created < %d + 2592000
           AND n.status = 1
-        ORDER By created",
-        array($node->type, $group_nid, $node->created), 0, 1)
+        ORDER By n.created) n
+        INNER JOIN {og_ancestry} oa ON n.nid=oa.nid
+        WHERE oa.group_nid = %d",
+        array($node->type, $node->created, $node->created, $group_nid), 0, 1)
     );
     if ($next_by_time) {
       $links['next_by_time'] = array(
@@ -528,15 +532,16 @@ function _webb_link_note($node, $teaser) {
     $next_in_topic = db_result(
         db_query_range("SELECT n.nid
           FROM {node} n
-            INNER JOIN {og_ancestry} oa ON n.nid=oa.nid
-            INNER JOIN {webbtopic_topic} wt ON wt.nid=n.nid
+          INNER JOIN {og_ancestry} oa ON n.nid=oa.nid
+          INNER JOIN {webbtopic_topic} wt ON wt.nid=n.nid
           WHERE n.type='%s'
-            AND oa.group_nid=%d
             AND n.created > %d
+            AND n.created < %d + 2592000
             AND n.status = 1
+            AND oa.group_nid=%d
             AND wt.topic='%s'
-          ORDER By created",
-          array($node->type, $group_nid, $node->created, $node->webb['webbtopic_topic']), 0, 1)
+          ORDER BY n.created",
+          array($node->type, $node->created, $node->created, $group_nid, $node->webb['webbtopic_topic']), 0, 1)
       );
     if ($next_in_topic) {
       $topic_label = db_result(db_query("SELECT label FROM {webbtopic_label} WHERE nid=%d", array($group_nid)));
@@ -551,18 +556,19 @@ function _webb_link_note($node, $teaser) {
 
     // Add a link to the next unread note chronologically on this board
     if ($user->uid) {
+      $date_created = max($node->created, time() - 2592000);
       $next_unread = db_result(
-        db_query_range("SELECT n.nid
+        db_query_range("SELECT n.nid FROM (SELECT n.nid
           FROM {node} n
-            INNER JOIN {og_ancestry} oa ON n.nid=oa.nid
-            LEFT OUTER JOIN {history} h ON h.uid=%d AND h.nid=n.nid
           WHERE n.type='%s'
-            AND oa.group_nid=%d
             AND n.created > %d
             AND n.status = 1
-            AND h.nid IS NULL
-          ORDER By created",
-          array($user->uid, $node->type, $group_nid, $node->created), 0, 1)
+          ORDER By created) n
+          INNER JOIN {og_ancestry} oa ON n.nid=oa.nid
+          LEFT OUTER JOIN {history} h ON h.uid=%d AND h.nid=n.nid
+          WHERE oa.group_nid=%d
+          AND h.nid IS NULL",
+          array($node->type, $date_created, $user->uid, $group_nid), 0, 1)
       );
       if ($next_unread) {
         $links['next_unread'] = array(
