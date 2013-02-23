@@ -37,7 +37,7 @@
     
   <div id="body_pane">
     <?php if(!empty($tabs)) { ?><div class="tabs"><?php print $tabs ?></div><?php }?>
-    <div id="main" class="sb">
+    <div id="main" class="sb <?php if($is_front){ print "main-front"; }?>">
       <?php if (!empty($mission)) : ?>
         <div class="mission-header"><h2>Welcome to STF</h2></div><div class="mission-statement"><?php print $mission; ?></div>
       <?php endif; ?>
