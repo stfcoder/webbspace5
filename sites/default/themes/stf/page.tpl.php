@@ -22,6 +22,10 @@
   <?php if ($search_box) : ?>
     <div class="search-box"><?php print $search_box; ?></div>
   <?php endif; ?>
+  <div class="marketing">
+    <a href="http://www.facebook.com/groups/103312886459880/" title="Visit our Facebook Group" target="_blank"><img src="/webb/sites/default/themes/stf/facebook.png" alt="Facebook" /></a>
+    <a href="http://twitter.com/StarfleetSTF" title="Visit our Twitter Page" target="_blank"><img src="/webb/sites/default/themes/stf/twitter.png" alt="Twitter" /></a>
+  </div>
 </div>
 
 <div id="content" class="container">
@@ -35,7 +39,7 @@
     <?php if(!empty($tabs)) { ?><div class="tabs"><?php print $tabs ?></div><?php }?>
     <div id="main" class="sb">
       <?php if (!empty($mission)) : ?>
-        <div class="mission-statement"><?php print $mission; ?></div>
+        <div class="mission-header"><h2>Welcome to STF</h2></div><div class="mission-statement"><?php print $mission; ?></div>
       <?php endif; ?>
       <h1 class="title"><?php print $title ?></h1>
       <?php print $help ?>

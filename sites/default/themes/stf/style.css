@@ -342,7 +342,7 @@ div.breadcrumb {
 }
 
 #primarylinks a:hover {
-    background: #1a8fc9 !important;
+    background: #6090ff !important;
 }
 
 #primarylinks {
@@ -352,7 +352,7 @@ div.breadcrumb {
 
 #primarylinks li:nth-child(n+2):before {
   content: "|";
-  color: #1a8fc9;
+  color: #6090ff;
 }
 
 #primarylinks ul li {
@@ -362,7 +362,7 @@ div.breadcrumb {
 }
 
 #primarylinks {
-  border: 2px solid #1a8fc9;
+  border: 2px solid #6090ff;
   -moz-border-radius: 10px;
   border-radius: 10px;
   float: right;
@@ -496,7 +496,7 @@ div.project-issue table tbody tr {
 .mission-statement, .front div { 
   margin: 0 0 1em 0 !important;
   color: #CCDDFF;
-  border: 2px solid #1a8fc9;
+  border: 2px solid #6090ff;
   -moz-border-bottom-left-radius: 10px;
   border-bottom-left-radius: 10px;
   -moz-border-bottom-right-radius: 10px;
@@ -520,13 +520,13 @@ div.project-issue table tbody tr {
 .front h2 {
   width: auto;
   margin: 0;
-  color: #000000;
-  border: 2px solid #1a8fc9;
+  color: #111111;
+  border: 2px solid #6090ff;
   -moz-border-top-left-radius: 10px;
   border-top-left-radius: 10px;
   -moz-border-top-right-radius: 10px;
   border-top-right-radius: 10px;
-  background: #1a8fc9;
+  background: #6090ff;
   padding: 0.1em 0.5em 0 0.5em;
   text-align: left;
   font-size: 1.2em;
@@ -551,7 +551,7 @@ div.project-issue table tbody tr {
   background: #000000;
   position: relative;
   border: none;
-  border: 2px solid #1a8fc9;
+  border: 2px solid #6090ff;
   -moz-border-radius: 10px;
   border-radius: 10px;
 }
@@ -578,18 +578,18 @@ html {
 }
 
 .block .view-item {
-  color: #000000;
+  color: #111111;
 }
 
 .block .title {
   margin: 0 !important;
-  color: #000000 !important;
-  border: 2px solid #1a8fc9;
+  color: #111111 !important;
+  border: 2px solid #6090ff;
   -moz-border-top-left-radius: 10px;
   border-top-left-radius: 10px;
   -moz-border-top-right-radius: 10px;
   border-top-right-radius: 10px;
-  background: #1a8fc9;
+  background: #6090ff;
   padding: 0.1em 0 0 0.4em !important;
   text-align: left;
   font-size: 1.2em;
@@ -597,7 +597,7 @@ html {
 }
 
 .block .content {
-  border: 2px solid #1a8fc9;
+  border: 2px solid #6090ff;
   -moz-border-bottom-left-radius: 10px;
   border-bottom-left-radius: 10px;
   -moz-border-bottom-right-radius: 10px;
@@ -612,12 +612,12 @@ html {
 }
 
 .marker {
-  color: #1a8fc9;
+  color: #6090ff;
 }
 
 .block-content li {
   list-style: disc !important;
-  color: #1a8fc9;
+  color: #6090ff;
   margin: 0.2em 0 0 0 !important;
 }
 
@@ -640,10 +640,10 @@ html {
 
 .block-content a:hover, .block-content li a.active:hover, .motd-box dt a, .motd-box dd a:hover, .view-content-og-ghp-characters a:hover {
   color: #CCDDFF  !important;
-  background: #1a8fc9 !important;
+  background: #6090ff !important;
   text-decoration: none;
   font-weight: bold;
-  border: 1px solid #1a8fc9;
+  border: 1px solid #6090ff;
   -moz-border-radius: 5px;
   border-radius: 5px;
   margin-left: -1px !important;
@@ -662,7 +662,7 @@ html {
 }
 
 #body_pane .tabs a:hover {
-    background: #1a8fc9 !important;
+    background: #6090ff !important;
 }
 
 #body_pane .tabs {
@@ -672,7 +672,7 @@ html {
 
 #body_pane .tabs li:nth-child(n+2):before {
   content: "|";
-  color: #1a8fc9;
+  color: #6090ff;
 }
 
 #body_pane .tabs ul {
@@ -682,7 +682,7 @@ html {
 }
 
 #body_pane div.tabs {
-  border: 2px solid #1a8fc9;
+  border: 2px solid #6090ff;
   -moz-border-radius: 10px;
   border-radius: 10px;
   float: right;
@@ -699,6 +699,51 @@ html {
 }
 
 .mission-statement {
-  border-color: #003300;
-  background: #003300;
+  border-color: #9FC99F;
+  background: #222222;
+}
+
+.main-front h1.title {
+  padding-top:0.5em !important;
+  margin-bottom: -1em;
+}
+
+label, #main h1.title {
+  color: #CCDDFF !important;
+}
+
+
+
+.mission-header h2 {
+  background: #9FC99F;
+  color: #111111;
+  width: 10em;
+  margin: auto;
+  font-size: x-large;
+  padding: 0.3em;  
+  border: 2px solid #9FC99F;
+  -moz-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+}
+
+
+.main-front {
+  border: none !important;
+//  width: 96% !important;
+} 
+
+ul.tabs.secondary li {
+  display: none !important;
+}
+
+
+.marketing {
+    padding: 40px 0 0 118px;
+  }
+  
+.marketing img {
+    width: 32px;
 }
