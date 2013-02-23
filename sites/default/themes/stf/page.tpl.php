@@ -17,9 +17,7 @@
   </div>
   <?php if ($site_name) { ?><h1 class='site-name'><a href="<?php print $base_path ?>" title="<?php print t('Home') ?>"><?php print $site_name ?></a></h1><?php } ?>
   <?php if ($site_slogan) { ?><div class='site-slogan'><?php print $site_slogan ?></div><?php } ?>
-  <div id="primarylinks">
-    <?php if (isset($primary_links)) { ?><?php print theme('links', $primary_links, array('class' =>'links', 'id' => 'navlist')) ?><?php } ?>
-  </div>
+    <?php if (isset($primary_links)) { ?><div id="primarylinks"><?php print theme('links', $primary_links, array('class' =>'links', 'id' => 'navlist')) ?></div><?php } ?>
   <?php print $breadcrumb; ?>
   <?php if ($search_box) : ?>
     <div class="search-box"><?php print $search_box; ?></div>
@@ -33,8 +31,8 @@
     </div>
   <?php endif; ?>
     
-  <div id="body_pane"> 
-    <div class="tabs"><?php print $tabs ?></div>
+  <div id="body_pane">
+    <?php if(!empty($tabs)) { ?><div class="tabs"><?php print $tabs ?></div><?php }?>
     <div id="main" class="sb">
       <?php if (!empty($mission)) : ?>
         <div class="mission-statement"><?php print $mission; ?></div>

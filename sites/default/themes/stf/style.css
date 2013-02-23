@@ -1,7 +1,7 @@
 
 body {
-  background-color: #000;
-  background-image: url('./starfield.gif');
+  background-color: #001;
+  //background-image: url('./starfield.gif');
   background-repeat: repeat;
   color: #fff;
 }
@@ -109,7 +109,7 @@ font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 div.primarylinks {
-width: 500px;
+//width: 500px;
 margin-left: 235px;
 color: #99c;
 }
@@ -330,43 +330,49 @@ div.breadcrumb {
   float: right;
 }
 
-
-/*
-#primarylinks ul, #primarylinks div.breadcrumb {
-margin: 0;
-position: relative;
-top: -10px;
-text-align: left;
+/* TAB LINKS */
+#primarylinks ul li a {
+  display: inline-block;
+  color: #CCDDFF;
+  font-weight: normal;
+  padding: 0 1em 0.1em 1em;
+  margin: 0 -8px 0px -4px;
+  text-align: center;
+  text-decoration: none;
 }
-*/
 
-#primarylinks div.breadcrumb {
-left: 15px;
-top: -8px;
-font-size: 10px;
+#primarylinks a:hover {
+    background: #1a8fc9 !important;
+}
+
+#primarylinks {
+  color: #222222;
+  display: block !important;
+}
+
+#primarylinks li:nth-child(n+2):before {
+  content: "|";
+  color: #1a8fc9;
 }
 
 #primarylinks ul li {
-  width: 130px;
-  display: inline;
-  text-align: center;
-  vertical-align: middle;
-  list-style-type: none;
-  /*border-right: 1px solid #999;*/
+  padding: 0;
+  margin: 0;
+  border: none !important;
 }
 
-#primarylinks ul li a {
-  padding: 0 15px;
-  width: 130px !important;
+#primarylinks {
+  border: 2px solid #1a8fc9;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  float: right;
+  background: #222222;
+  padding-left: 1.1em;
+  padding-right: 1.2em;
+  margin: 0;
+  height: 1.6em;
 }
 
-#primarylinks ul li.last {
-border-right: 0;
-}
-
-#primarylinks ul li a, #primarylinks ul li a:visited {
-color: #9ff;
-}
 
 #footer div {
 margin-left: 20px;
@@ -484,4 +490,215 @@ div.box {
 
 div.project-issue table tbody tr {
 	color: black;
+}
+
+/* Front Page Stuff */
+.mission-statement, .front div { 
+  margin: 0 0 1em 0 !important;
+  color: #CCDDFF;
+  border: 2px solid #1a8fc9;
+  -moz-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  -moz-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: #222222;
+  padding: 0.5em;
+  min-height: 5em;
+  clear: both;
+}
+  
+.mission-statement, .front:nth-child(even) div {
+  -moz-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+  
+.mission-statement, .front:nth-child(odd) div {
+  -moz-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+ 
+.front h2 {
+  width: auto;
+  margin: 0;
+  color: #000000;
+  border: 2px solid #1a8fc9;
+  -moz-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+  background: #1a8fc9;
+  padding: 0.1em 0.5em 0 0.5em;
+  text-align: left;
+  font-size: 1.2em;
+}
+  
+.front h2 a {
+    color: #111111 !important;
+}
+  
+.front:nth-child(odd) h2 {
+  float: right;
+  text-align: right;
+}
+  
+.front:nth-child(even) h2 {
+  float: left;
+}
+
+/* Format #content div, plus add a border */
+#content {
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  background: #000000;
+  position: relative;
+  border: none;
+  border: 2px solid #1a8fc9;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+#main {
+  margin-top: 1em;
+}
+
+
+/* Hide corners - welcome to the 21st Century... and CSS3 */
+#content .corner {
+  display: none;
+}
+
+/* Set min width to prevent funkyness... yes, I just made up a word. */
+html {
+  min-width: 1000px;
+}
+
+/* SIDE BLOCKS */
+
+.block, .block .content a {
+  color: #FFFF99;
+}
+
+.block .view-item {
+  color: #000000;
+}
+
+.block .title {
+  margin: 0 !important;
+  color: #000000 !important;
+  border: 2px solid #1a8fc9;
+  -moz-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+  background: #1a8fc9;
+  padding: 0.1em 0 0 0.4em !important;
+  text-align: left;
+  font-size: 1.2em;
+  width: 10em !important;
+}
+
+.block .content {
+  border: 2px solid #1a8fc9;
+  -moz-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  -moz-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -moz-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+  background: #222222;
+}
+
+.view-field {
+  color: #CCDDFF;
+}
+
+.marker {
+  color: #1a8fc9;
+}
+
+.block-content li {
+  list-style: disc !important;
+  color: #1a8fc9;
+  margin: 0.2em 0 0 0 !important;
+}
+
+.block-content {
+  padding: 1em !important;
+}
+
+/* LINKS ON MOTD */
+.block-content a, .block-content li a.active, .motd-box dt a:hover, .motd-box dd a, .view-content-og-ghp-characters a {
+  color: #CCDDFF !important;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: -1px !important;
+  /* Pop this in to prevent 'flickering' caused by expansion of element on hover */
+  border: 1px solid transparent;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background: transparent !important;
+}
+
+.block-content a:hover, .block-content li a.active:hover, .motd-box dt a, .motd-box dd a:hover, .view-content-og-ghp-characters a:hover {
+  color: #CCDDFF  !important;
+  background: #1a8fc9 !important;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #1a8fc9;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-left: -1px !important;
+}
+
+
+/* TAB LINKS */
+#body_pane .tabs a {
+  display: inline-block;
+  color: #CCDDFF;
+  font-weight: normal;
+  padding-bottom: 0.1em;
+  margin: 0 -8px 0px -4px;
+  text-align: center;
+  text-decoration: none;
+}
+
+#body_pane .tabs a:hover {
+    background: #1a8fc9 !important;
+}
+
+#body_pane .tabs {
+  color: #222222;
+  display: block !important;
+}
+
+#body_pane .tabs li:nth-child(n+2):before {
+  content: "|";
+  color: #1a8fc9;
+}
+
+#body_pane .tabs ul {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+#body_pane div.tabs {
+  border: 2px solid #1a8fc9;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  float: right;
+  background: #222222;
+  padding-left: 1.1em;
+  padding-right: 1.2em;
+  margin: 0;
+  height: 1.6em;
+}
+
+#body_pane .tabs a {
+  border: none;
+  background: transparent;
+}
+
+.mission-statement {
+  border-color: #003300;
+  background: #003300;
 }
