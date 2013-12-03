@@ -18,7 +18,7 @@ function advpoll_algorithms_binary() {
  * 
  * This creates a list of choices to allow the user to vote on choices.
  */
-function advpoll_voting_binary_form(&$node, $teaser, $page, $status) {
+function advpoll_voting_binary_form($node, $teaser, $page, $status) {
   static $binary_form_count = 0; 
   $form = array(
     '#id' => 'advpoll-voting-binary-form-'. $binary_form_count++,

@@ -46,7 +46,7 @@ margin-left: 0;
 margin-left: 1em;
 }
 
-ul.primary {
+ul.primary, ul.secondary {
 border-bottom:1px solid #666;
 border-collapse:collapse;
 height:16px;
@@ -60,18 +60,18 @@ white-space:nowrap;
 text-align: right;
 }
 
-ul.primary li {
+ul.primary li, ul.secondary li {
 display:inline;
 }
 
-ul.primary li.active a {
+ul.primary li.active a, ul.secondary li.active a {
 background-color:#000;
 border-color:#999;
 border-bottom: 1px solid #060610;
 border-style:solid;
 border-width:1px;
 }
-ul.primary li a {
+ul.primary li a, ul.secondary li a {
 background-color:#111;
 border-color:#666;
 border-style:solid solid none;
@@ -681,7 +681,7 @@ html {
   border: none;
 }
 
-#body_pane div.tabs {
+#body_pane div.tabs ul {
   border: 2px solid #6090ff;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -735,10 +735,6 @@ label, #main h1.title {
 //  width: 96% !important;
 } 
 
-ul.tabs.secondary li {
-  display: none !important;
-}
-
 
 .marketing {
     padding: 40px 0 0 118px;
@@ -746,4 +742,18 @@ ul.tabs.secondary li {
   
 .marketing img {
     width: 32px;
+}
+
+
+div.tabs {
+  width: 100%;
+}
+  
+ul.tabs.secondary {
+  float: left !important
+}
+  
+ul.tabs.secondary li {
+  padding: 0;
+  border: none;
 }
