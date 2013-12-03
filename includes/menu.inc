@@ -415,6 +415,10 @@ function menu_execute_active_handler() {
     $arguments = array_merge($arguments, explode('/', $arg));
   }
 
+  if(!is_array($arguments)) {
+    $arguments = array($arguments);
+  }
+
   return call_user_func_array($menu['callbacks'][$path]['callback'], $arguments);
 }
 

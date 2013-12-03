@@ -782,6 +782,8 @@ function _webb_form_alter_note_node_form($form_id, &$form) {
   $group = node_load($gid);
   $gid = array($gid => "$gid");
 
+    var_dump($parent_nid);
+
   //If it's a board, we'll do this.
   if($group->type == "board") {
     $form['og_nodeapi'] = array(
@@ -806,8 +808,8 @@ function _webb_form_alter_note_node_form($form_id, &$form) {
   }
   else {
     //Otherwise something fooey has gone on here - therefore 404 it.
-    drupal_not_found();
-    drupal_exit();
+    //drupal_not_found();
+    //drupal_exit();
   }
   
   // Hide and pre-fill the title field, since we don't want to use it

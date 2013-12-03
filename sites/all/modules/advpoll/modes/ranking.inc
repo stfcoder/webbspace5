@@ -16,7 +16,7 @@ function advpoll_algorithms_ranking() {
   );
 }
 
-function advpoll_voting_ranking_form(&$node, $teaser, $page, $status) {
+function advpoll_voting_ranking_form($node, $teaser, $page, $status) {
   static $ranking_form_count = 0; 
   $form = array(
     '#id' => 'advpoll_voting_ranking_form-'. $ranking_form_count++,
