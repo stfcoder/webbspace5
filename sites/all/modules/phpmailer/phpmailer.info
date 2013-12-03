@@ -1,0 +1,10 @@
+; $Id: phpmailer.info,v 1.1.2.1 2009/01/16 17:21:35 smk Exp $
+name = PHPMailer
+description = Integrates PHPMailer with Drupal.
+package = Mail
+
+; Information added by drupal.org packaging script on 2009-06-10
+version = "5.x-2.1"
+project = "phpmailer"
+datestamp = "1244643354"
+
